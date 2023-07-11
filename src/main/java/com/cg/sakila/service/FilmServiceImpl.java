@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.sakila.entity.Film;
 import com.cg.sakila.entity.Language;
-import com.cg.sakila.repository.CategoryRepository;
-import com.cg.sakila.repository.FilmCategoryRepository;
 import com.cg.sakila.repository.FilmRepository;
 import com.cg.sakila.repository.LanguageRepository;
 
@@ -25,15 +23,11 @@ public class FilmServiceImpl implements FilmService {
 	 
     private final FilmRepository filmRepository;
     private final LanguageRepository languageRepository;
-    private final CategoryRepository categoryRepository;
-    private final FilmCategoryRepository filmCategoryRepository;
 
     @Autowired
-    public FilmServiceImpl(FilmRepository filmRepository, LanguageRepository languageRepository,CategoryRepository categoryRepository,FilmCategoryRepository filmCategoryRepository) {
+    public FilmServiceImpl(FilmRepository filmRepository, LanguageRepository languageRepository) {
         this.filmRepository = filmRepository;
         this.languageRepository = languageRepository;
-        this.categoryRepository=categoryRepository;
-        this.filmCategoryRepository=filmCategoryRepository;
     }
     
     @Override
@@ -112,13 +106,7 @@ public class FilmServiceImpl implements FilmService {
 	    public List<Film> getFilmsByLanguage(String language) {
 	        return filmRepository.findByLanguageName(language);
 	}
- 
-    //Update Title of a Film
-//    @Override
-//    public void updateFilmTitle(short id, String newTitle) {
-//        filmRepository.updateFilmTitleById(id, newTitle);
-//    }
-    
+	 
     //Update Release Year of a Film
     @Override
     public void updateFilmReleaseYear(Short id, Integer newReleaseYear) {
@@ -188,7 +176,6 @@ public class FilmServiceImpl implements FilmService {
 
 	@Override
 	public void updateFilmTitle(short id, String newTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 	

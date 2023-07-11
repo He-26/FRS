@@ -42,7 +42,7 @@ public class InventoryServiceImpl implements InventoryService {
 		List<Inventory> inventoryList = inventoryRepository.findByStoreStoreId(storeId);
 		List<Map<String, Object>> result = new ArrayList<>();
 
-		for (Inventory inventory : inventoryList) {
+		for(Inventory inventory : inventoryList) {
 			Film film = inventory.getFilm();
 			String filmTitle = film.getTitle();
 			int numberOfCopies = inventoryList.size();

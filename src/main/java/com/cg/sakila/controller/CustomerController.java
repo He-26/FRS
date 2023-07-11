@@ -50,9 +50,8 @@ public class CustomerController {
 	@GetMapping("/firstname/{fn}")
     public ResponseEntity<List<Customer>> searchCustomersByFirstName(@PathVariable("fn") String firstName) {
         List<Customer> customers = customerservice.findCustomersByFirstName(firstName);
-        if (customers.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        if (customers.isEmpty())
+        	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 	
@@ -60,9 +59,8 @@ public class CustomerController {
 	@GetMapping("/email/{email}")
     public ResponseEntity<Customer> searchCustomerByEmail(@PathVariable("email") String email) {
         Customer customer = customerservice.findCustomerByEmail(email);
-        if (customer == null) {
+        if (customer == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 	
@@ -186,11 +184,10 @@ public class CustomerController {
     @PostMapping("/post")
     public ResponseEntity<String> addCustomer(@RequestBody Customer customer) {
         Customer addedCustomer = customerservice.addCustomer(customer);
-        if (addedCustomer != null) {
+        if(addedCustomer != null)
             return new ResponseEntity<>("Record Created Successfully", HttpStatus.OK);
-        } else {
+        else
             return new ResponseEntity<>("Failed to Create Record", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
     
 }

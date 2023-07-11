@@ -36,11 +36,6 @@ public class StaffController {
         }
     }
 
-	/*
-	 * @GetMapping("/address") public List<Address> fetchAllAddress() { return
-	 * staffService.fetchAllAddress();//error showing because this is not there in
-	 * StaffService }
-	 */
 	@GetMapping("/all")
 	public List<Staff> fetchAll() {
 		return staffService.fetchAll();

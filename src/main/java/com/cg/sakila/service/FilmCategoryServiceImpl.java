@@ -18,33 +18,34 @@ import java.util.stream.Collectors;
 @Service
 public class FilmCategoryServiceImpl implements FilmCategoryService {
 
-	 private final FilmCategoryRepository filmCategoryRepository;
-	    @Autowired
-	    public FilmCategoryServiceImpl(FilmCategoryRepository filmCategoryRepository) {
-	        this.filmCategoryRepository = filmCategoryRepository;
-	    }
+	private final FilmCategoryRepository filmCategoryRepository;
+	
+    @Autowired
+    public FilmCategoryServiceImpl(FilmCategoryRepository filmCategoryRepository) {
+        this.filmCategoryRepository = filmCategoryRepository;
+    }
 
-	    @Override
-	    public List<Film> getFilmsByCategory(String category) {
-	        List<FilmCategory> filmCategories = filmCategoryRepository.findByCategoryName(category);
-	        return filmCategories.stream()
-	                .map(FilmCategory::getFilm)
-	                .collect(Collectors.toList());
-	    }
+    @Override
+    public List<Film> getFilmsByCategory(String category) {
+        List<FilmCategory> filmCategories = filmCategoryRepository.findByCategoryName(category);
+        return filmCategories.stream()
+                .map(FilmCategory::getFilm)
+                .collect(Collectors.toList());
+    }
 
-	    @Override
-	    public void assignCategoryToFilm(Short filmId, Category category) {
-	        Film film = new Film();
-	        film.setFilmId(filmId);
-	        FilmCategoryId filmCategoryId=new FilmCategoryId();
-	        filmCategoryId.setFilmId(filmId);
-	        filmCategoryId.setCategoryId(category.getCategoryId());
-	        
-	        FilmCategory filmCategory=new FilmCategory();
-	        filmCategory.setId(filmCategoryId);
-	        filmCategory.setFilm(film);
-	        filmCategory.setCategory(category);
-	        filmCategory.setLastUpdate(new Timestamp(System.currentTimeMillis()));
-	        filmCategoryRepository.save(filmCategory);
-	    }
+    @Override
+    public void assignCategoryToFilm(Short filmId, Category category) {
+        Film film = new Film();
+        film.setFilmId(filmId);
+        FilmCategoryId filmCategoryId=new FilmCategoryId();
+        filmCategoryId.setFilmId(filmId);
+        filmCategoryId.setCategoryId(category.getCategoryId());
+        
+        FilmCategory filmCategory=new FilmCategory();
+        filmCategory.setId(filmCategoryId);
+        filmCategory.setFilm(film);
+        filmCategory.setCategory(category);
+        filmCategory.setLastUpdate(new Timestamp(System.currentTimeMillis()));
+        filmCategoryRepository.save(filmCategory);
+    }
 }

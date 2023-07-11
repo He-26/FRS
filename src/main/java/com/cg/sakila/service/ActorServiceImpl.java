@@ -34,18 +34,16 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public List<Actor> findActorsByLastName(String lastName) {
     	List<Actor> actor = actorRepository.findByLastName(lastName);
-    	if(actor.isEmpty()==true) {
+    	if(actor.isEmpty())
     		throw new ActorNotFoundException("Actor with Lastname: "+lastName+",is not avialable");
-    	}
         return actorRepository.findByLastName(lastName);
     }
 
     @Override
     public List<Actor> findActorsByFirstName(String firstName) {
     	List<Actor> actors=actorRepository.findByFirstName(firstName);
-    	if(actors.isEmpty()==true) {
+    	if(actors.isEmpty())
     		throw new ActorNotFoundException("Actor with firstName"+firstName+" is not available");
-    	}
         return actorRepository.findByFirstName(firstName);
     }
     
@@ -74,16 +72,14 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public List<Object[]> getTopTenActorsByFilmCount() {
     	 List<Object[]> results = actorRepository.findTopTenActorsByFilmCount();
-    	 List<Object[]> firstTenElements = results.subList(0, 10);
-    	 return firstTenElements;
+    	 return results.subList(0, 10);
     }
 
 	@Override
 	public List<Film> getFilmsByActorId(Short actorId) {
 		List<Film> allLists=actorRepository.searchFilmsByActorId(actorId);
-		if(allLists.isEmpty()==true) {
+		if(allLists.isEmpty())
 			throw new ActorNotFoundException("no data available");
-		}
 		return actorRepository.searchFilmsByActorId(actorId);
 	}
     

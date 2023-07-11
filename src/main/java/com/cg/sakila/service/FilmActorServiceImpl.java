@@ -23,7 +23,7 @@ public class FilmActorServiceImpl implements FilmActorService {
         this.filmActorRepository = filmActorRepository;
     }
 
-  //Find all Actors of a Film by Film id
+    //Find all Actors of a Film by Film id
     @Override
     public List<Actor> findAllActorsByFilmId(Short filmId) {
         List<FilmActor> filmActors = filmActorRepository.findAllByIdFilmId(filmId);
@@ -41,9 +41,6 @@ public class FilmActorServiceImpl implements FilmActorService {
     			.map(FilmActor::getFilm)
     			.collect(Collectors.toList());
     }
-    
-    
-    
     
   //Assign Actor to a Film
     @Override
@@ -65,7 +62,6 @@ public class FilmActorServiceImpl implements FilmActorService {
     }
     
     //Assign Film to a Actor
-    
     @Override
     public void assignFilmToActor(Short actorId, Film film) {
         Actor actor = new Actor();

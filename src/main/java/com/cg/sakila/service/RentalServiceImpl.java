@@ -77,7 +77,7 @@ public class RentalServiceImpl implements RentalService {
 	    
 	    @Override
 	    public String addRental(Rental rental) {
-	        Rental savedRental = rentalRepository.save(rental);
+	    	rentalRepository.save(rental);
 	        return "Record Created Successfully";
 	    }
 }

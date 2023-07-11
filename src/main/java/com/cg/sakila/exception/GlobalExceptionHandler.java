@@ -11,13 +11,11 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public ResponseEntity<String> handleCustomerNotFoundException(CustomerNotFoundException cnfe){
-		ResponseEntity<String> res=new ResponseEntity<String>(cnfe.getMessage(),HttpStatus.NOT_FOUND);
-		return res;
+		return new ResponseEntity<>(cnfe.getMessage(),HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(ActorNotFoundException.class)
 	public ResponseEntity<String> handleActorNotFoundException(ActorNotFoundException anfe){
-		ResponseEntity<String> res=new ResponseEntity<String>(anfe.getMessage(),HttpStatus.NOT_FOUND);
-		return res;
+		return new ResponseEntity<>(anfe.getMessage(),HttpStatus.NOT_FOUND);
 	}
 }

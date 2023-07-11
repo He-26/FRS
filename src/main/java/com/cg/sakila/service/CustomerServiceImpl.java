@@ -18,7 +18,6 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository repo;
-	private CustomerService custservice;
 	
 	@Override
 	public List<Customer> findAllCustomers(){
@@ -27,17 +26,15 @@ public class CustomerServiceImpl implements CustomerService {
 	 @Override
 	 public List<Customer> findCustomersByLastName(String lastName) {
 		 List<Customer> allcustomers=repo.findByLastName(lastName);
-		 if(allcustomers.isEmpty()==true) {
+		 if(allcustomers.isEmpty())
 			 throw new CustomerNotFoundException("Customer with Lastname: "+lastName+",is not available");
-		 }
 		 return repo.findByLastName(lastName);
 	 }
 	 @Override
 	    public List<Customer> findCustomersByFirstName(String firstName) {
 		 List<Customer> allcustomers=repo.findByFirstName(firstName);
-		 if(allcustomers.isEmpty()==true) {
+		 if(allcustomers.isEmpty())
 			 throw new CustomerNotFoundException("Customer with firstname: "+firstName+",is not available");
-		 }
 	        return repo.findByFirstName(firstName);
 	    }
 	 @Override
@@ -51,9 +48,8 @@ public class CustomerServiceImpl implements CustomerService {
 	 @Override
 	    public List<Customer> getCustomersByCity(String city) {
 		 	List<Customer> customers=repo.findByAddress_City_City(city);
-		 	if(customers.isEmpty()==true) {
-		 		throw new CustomerNotFoundException("Customer with city"+city+"is not available");
-		 	}
+		 	if(customers.isEmpty())
+		 		throw new CustomerNotFoundException("Customer with city "+city+" is not available");
 	        return repo.findByAddress_City_City(city);
 	    }
 	 @Override
@@ -64,9 +60,8 @@ public class CustomerServiceImpl implements CustomerService {
 	 @Override
 	    public List<Customer> findActiveCustomers() {
 		 List<Customer> allcustomers=repo.findByActive(1);
-		 if(allcustomers.isEmpty()==true) {
+		 if(allcustomers.isEmpty())
 			 throw new CustomerNotFoundException("No active customers are here");
-		 }
 	        return repo.findByActive(1);
 	    }
 	 
@@ -83,9 +78,8 @@ public class CustomerServiceImpl implements CustomerService {
 	 @Override
 	    public List<Customer> findInactiveCustomers() {
 		 List<Customer> allcustomers=repo.findByActive(0);
-		 if(allcustomers.isEmpty()==true) {
+		 if(allcustomers.isEmpty())
 			 throw new CustomerNotFoundException("No inactive customers are here");
-		 }
 	        return repo.findByActive(0);
 	    }
 	 

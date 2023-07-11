@@ -9,21 +9,13 @@ import org.springframework.stereotype.Service;
 import com.cg.sakila.entity.Address;
 import com.cg.sakila.entity.Staff;
 import com.cg.sakila.entity.Store;
-import com.cg.sakila.repository.AddressRepository;
 import com.cg.sakila.repository.StaffRepository;
-import com.cg.sakila.repository.StoreRepository;
 
 @Service
 public class StaffServiceImpl implements StaffService {	
 
 	@Autowired
 	private StaffRepository staffRepository;
-
-	@Autowired
-	private StoreRepository storeRepository;
-
-	@Autowired
-	private AddressRepository addressRepository;
 
 	@Override
 	public List<Staff> searchStaffByLastName(String lastName) {

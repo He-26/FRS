@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import com.cg.sakila.entity.Address;
 import com.cg.sakila.entity.Staff;
-import com.cg.sakila.entity.Store;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,Byte> {

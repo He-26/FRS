@@ -25,7 +25,6 @@ import com.cg.sakila.service.InventoryService;
 @RequestMapping("/api/inventory")
 public class InventoryController {
 	
-	private final FilmService filmService;
 	private final InventoryService inventoryService;
 	 
 	@Autowired
@@ -35,9 +34,8 @@ public class InventoryController {
 	 
 
 	@Autowired
-	public InventoryController(InventoryService inventoryService,FilmService filmService) {
+	public InventoryController(InventoryService inventoryService) {
 	        this.inventoryService = inventoryService;
-	        this.filmService=filmService;
 	} 	
 	
 	//working

@@ -1,6 +1,5 @@
 package com.cg.sakila.controller;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -251,7 +250,6 @@ public class FilmController {
         return ResponseEntity.ok("Category successfully assigned to the film!");
     }
     
-    //Find all Films of specified {category}
     @GetMapping("/category/{category}")
     public List<Film> getFilmsByCategory(@PathVariable("category") String category) {
         return filmCategoryService.getFilmsByCategory(category);
