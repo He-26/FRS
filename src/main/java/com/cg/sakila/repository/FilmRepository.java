@@ -17,7 +17,7 @@ import com.cg.sakila.entity.Language;
 @Repository
 public interface FilmRepository extends JpaRepository<Film,Short>{
 
-	List<Film> findByTitleContaining(String title);
+  	List<Film> findByTitleContaining(String title);
     List<Film> findByReleaseYear(int year);
     List<Film> findFilmsByRentalDurationGreaterThan(int rentalDuration);
     List<Film> findFilmsByRentalRateGreaterThan(double rentalRate);
@@ -25,21 +25,20 @@ public interface FilmRepository extends JpaRepository<Film,Short>{
     List<Film> findFilmsByRentalDurationLessThan(int rentalDuration);
     List<Film> findFilmsByRentalRateLessThan(double rentalRate);
     List<Film> findFilmsByLengthLessThan(int length);
-    List<Film> findFilmsByRatingLessThan(String rating); 
-    List<Film> findFilmsByRatingGreaterThan(String rating);
     List<Film> findByLanguageName(String language);
-	
-    /*
-    @Modifying
-    @Query("UPDATE Film f SET f.title = :newTitle WHERE f.id = :id")
-    void updateFilmTitleById(short id, String newTitle);
-    */
     
-    @Modifying
-    @Query("UPDATE Film f SET f.language = :language WHERE f.id = :filmId")
-    void updateFilmLanguage(@Param("filmId") Short filmId, @Param("language") Language language);
-    
+    @Query("SELECT f FROM Film f WHERE f.releaseYear BETWEEN :fromYear AND :toYear")
+    List<Film> getFilmsReleasedBetweenYears(@Param("fromYear") int fromYear, @Param("toYear") int toYear);
+
+    @Query("SELECT f FROM Film f WHERE ASCII(f.rating) < ASCII(:rating)")
+    List<Film> findFilmsByRatingLessThan(@Param("rating") String rating);
+
+    @Query("SELECT f FROM Film f WHERE ASCII(f.rating) > ASCII(:rating)")
+    List<Film> findFilmsByRatingGreaterThan(@Param("rating") String rating);
+
     @Query("SELECT f.releaseYear, COUNT(f) FROM Film f GROUP BY f.releaseYear")
     List<Object[]> countFilmsByYear();
-    
+
+    @Query("UPDATE Film f SET f.title = :newTitle WHERE f.id = :id")
+    void updateFilmTitleById(@Param("id") short id, @Param("newTitle") String newTitle);
 }

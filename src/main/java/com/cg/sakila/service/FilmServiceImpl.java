@@ -88,18 +88,12 @@ public class FilmServiceImpl implements FilmService {
     
     @Override
     public List<Film> findFilmsByRatingLessThan(String rating) {
-        TypedQuery<Film> query = entityManager.createQuery(
-                "SELECT f FROM Film f WHERE ASCII(f.rating) < ASCII(:rating)", Film.class);
-        query.setParameter("rating", rating);
-        return query.getResultList();
+    	return filmRepository.findFilmsByRatingLessThan(rating);
     }
     
     @Override
     public List<Film> findFilmsByRatingGreaterThan(String rating) {
-        TypedQuery<Film> query = entityManager.createQuery(
-                "SELECT f FROM Film f WHERE ASCII(f.rating) > ASCII(:rating)", Film.class);
-        query.setParameter("rating", rating);
-        return query.getResultList();
+        return filmRepository.findFilmsByRatingGreaterThan(rating);
     }
     
 	 @Override
@@ -167,17 +161,8 @@ public class FilmServiceImpl implements FilmService {
 	}
 
 	@Override
-	public Film updateFilmTitleById(short id, Film film) {
-		Film existimgFilmTitle = getFilmById(id);
-		
-		existimgFilmTitle = film;
-		return filmRepository.save(existimgFilmTitle);
+	public void updateFilmTitleById(short id, String newTitle) {
+		filmRepository.updateFilmTitleById(id, newTitle);
 	}
-
-	@Override
-	public void updateFilmTitle(short id, String newTitle) {
-		
-	}
-	
 	
 }

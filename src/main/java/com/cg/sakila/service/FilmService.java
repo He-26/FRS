@@ -19,7 +19,6 @@ public interface FilmService {
     List<Film> findFilmsByRatingLessThan(String rating);
     List<Film> findFilmsByRatingGreaterThan(String rating);
 	List<Film> getFilmsByLanguage(String language);
-	void updateFilmTitle(short id, String newTitle);
 	void updateFilmReleaseYear(Short id, Integer newReleaseYear);
 	void updateFilmRentalDuration(Short id, Integer newRentalDuration);
 	void updateFilmRentalRate(Short id, Double newRentalRate);
@@ -28,5 +27,5 @@ public interface FilmService {
     List<Object[]> countFilmsByYear();
 	Film getFilmById(Short filmId);
 	
-	public Film updateFilmTitleById(short id,Film film);
+	public void updateFilmTitleById(short id,String newTitle);
 }

@@ -27,6 +27,6 @@ public interface StoreService {
 	List<Staff> findAllStaff();
 	List<Address> fetchAllAddress();
 	List<Store> findAllStore();
-	Map<Object, Object> findAllOfMyStore();
+	Map<String, Object> findAllOfMyStore();
 	List<Customer> getCustomersByStoreId(Byte storeId);
 }

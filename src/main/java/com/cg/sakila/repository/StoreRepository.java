@@ -1,6 +1,7 @@
 package com.cg.sakila.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,5 +23,8 @@ public interface StoreRepository extends JpaRepository<Store,Byte> {
 	
 	@Query("SELECT c FROM Customer c JOIN Store s ON c.storeId = s.storeId WHERE s.storeId = :storeId")
     List<Customer> findCustomersByStoreId(@Param("storeId") Byte storeId);
+	
+//	@Query("SELECT s.storeId AS store_id, s.staff.staffId AS manager_staff_id, s.lastUpdate AS last_update, s.address.addressId AS address_id FROM Store s")
+//	Map<String, Object> getStoreData();
 	
 }

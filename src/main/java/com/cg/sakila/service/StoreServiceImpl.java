@@ -1,13 +1,11 @@
 package com.cg.sakila.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,6 @@ import com.cg.sakila.entity.Customer;
 import com.cg.sakila.entity.Staff;
 import com.cg.sakila.entity.Store;
 import com.cg.sakila.repository.AddressRepository;
-import com.cg.sakila.repository.CustomerRepository;
 import com.cg.sakila.repository.StaffRepository;
 import com.cg.sakila.repository.StoreRepository;
 import java.util.Collections;
@@ -34,8 +31,6 @@ public class StoreServiceImpl implements StoreService {
 	@Autowired
 	private StaffRepository staffRepository;
 
-	@Autowired
-	private CustomerRepository customerRepository;
 
 	@Override
 	public void addStore(Store store) {
@@ -49,8 +44,7 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public Store getStoreById(byte id) {
-		Store store = storeRepository.findByStoreId(id);
-		return store;
+		return storeRepository.findByStoreId(id);
 	}
 
 	
@@ -110,39 +104,27 @@ public class StoreServiceImpl implements StoreService {
 
 	@Override
 	public List<Store> fetchAllStore() {
-		List<Store> stores = storeRepository.findAll();
-		return stores;
+		return storeRepository.findAll();
 	}
 
 	@Override
 	public Store findStoreByManagerStaffId(byte managerStaffId) {
 		Staff staff = staffRepository.findByStaffId(managerStaffId);
 		byte id = staff.getStaffId();
-		Store store = storeRepository.findByStoreId(id);
-		return store;
+		return storeRepository.findByStoreId(id);
 	}
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Map<Object, Object> findAllOfMyStore() {
-		String jpql = "SELECT s.storeId, s.address.addressId, s.lastUpdate, s.staff.staffId FROM Store s";
-		TypedQuery<Object[]> query = entityManager.createQuery(jpql, Object[].class);
-		List<Object[]> objlist = query.getResultList();
-		Object[] arr = objlist.get(0);
-		Object[] objarr = { "store_id", "manager_staff_id", "last_update", "address_id" };
-		int count = 0;
-		HashMap<Object, Object> map = new HashMap<>();
-		for (Object obj : objarr) {
-			map.put(obj, arr[count++]);
-		}
-		return map;
+	public Map<String, Object> findAllOfMyStore() {
+		//return storeRepository.getStoreData();
+		return null;
 	}
 
 	@Override
 	public List<Address> fetchAllAddress() {
-		List<Address> addresses = addressRepository.findAll();
-		return addresses;
+		return addressRepository.findAll();
 	}
 
 	@Override

@@ -160,8 +160,8 @@ public class FilmController {
     }*/
     
     @PutMapping("update/title/{id}")
-    public Film updateFilmTitle(@Valid @PathVariable("id") short id, @RequestBody Film film) {
-    	return filmService.updateFilmTitleById(id, film);
+    public void updateFilmTitle(@Valid @PathVariable("id") short id, @RequestBody String newTitle) {
+    	filmService.updateFilmTitleById(id, newTitle);
     }
 
     //working
