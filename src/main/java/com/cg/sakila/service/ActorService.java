@@ -14,8 +14,8 @@ public interface ActorService {
 	public Actor getActor(Short id);
 	Actor addActor(Actor actor);
 	List<Object[]> getTopTenActorsByFilmCount();
-	Actor updateActorFirstName(Short id, Actor actor);
-	Actor updateActorLastName(Short id, Actor actor);
+	Actor updateActorFirstName(Short id, String fn);
+	Actor updateActorLastName(Short id, String ln);
 	List<Film> getFilmsByActorId(Short actorId);
    
 }

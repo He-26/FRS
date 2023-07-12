@@ -8,7 +8,7 @@ import com.cg.sakila.entity.Payment;
 
 public interface PaymentService {
 
-	Collection<Object[]> calculateCumulativeRevenueOfAllStores();
-    public List<Object[]> getPaymentsWithCumulativeRevenue(Byte storeId);
     public List<Object[]> calculateCumulativeRevenueByDateAndStore(Byte storeId);
+    List<Map<String,Object>> getRevenueByFilm();
+    List<Object[]> calculateRevenueByFilmStoreWise(int filmId);
 }

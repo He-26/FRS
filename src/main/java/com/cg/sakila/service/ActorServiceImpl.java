@@ -48,19 +48,23 @@ public class ActorServiceImpl implements ActorService {
     }
     
 	@Override
-    public Actor updateActorLastName(Short id, Actor actor) {
-		Actor existingactor = getActor(id);
-		existingactor.setLastName(actor.getLastName());
-		existingactor.setLastUpdate(actor.getLastUpdate());
-		return actorRepository.save(existingactor);
+    public Actor updateActorLastName(Short id, String ln) {
+		Actor actor = actorRepository.findById(id).orElseThrow(()->new ActorNotFoundException("Actor is not found "));
+		if (actor != null) {
+			actor.setLastName(ln);
+			return actorRepository.save(actor);
+		}
+		throw new ActorNotFoundException("Actor is not found");
     }
 
     @Override
-    public Actor updateActorFirstName(Short id, Actor actor) {
-    	Actor existingactor = getActor(id);
-		existingactor.setFirstName(actor.getFirstName());
-		existingactor.setLastUpdate(actor.getLastUpdate());
-		return actorRepository.save(existingactor);
+    public Actor updateActorFirstName(Short id, String fn) {
+    	Actor actor = actorRepository.findById(id).orElseThrow(()->new ActorNotFoundException("Actor is not found"));
+		if (actor != null) {
+			actor.setLastName(fn);
+			return actorRepository.save(actor);
+		}
+		throw new ActorNotFoundException("Actor is not found..");
     }
 
 	@Override

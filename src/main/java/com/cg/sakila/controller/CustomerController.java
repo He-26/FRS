@@ -139,21 +139,16 @@ public class CustomerController {
         if (lastName == null || lastName.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         Customer updatedCustomer = customerservice.updateCustomerLastName(id, lastName);
         return ResponseEntity.ok(updatedCustomer);
     }
     
-    
+    //working
     @PutMapping("/update/email/{id}")
     public ResponseEntity<Customer> updateCustomerEmail(
             @PathVariable("id") Short id,
             @RequestBody Map<String, String> requestBody) {
         String email = requestBody.get("email");
-        if (email == null || email.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
         Customer updatedCustomer = customerservice.updateCustomerEmail(id, email);
         return ResponseEntity.ok(updatedCustomer);
     }

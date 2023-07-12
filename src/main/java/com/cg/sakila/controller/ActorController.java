@@ -51,13 +51,13 @@ public class ActorController {
 	}
 	
 	@PutMapping("/update/lastname/{id}")
-	public Actor updateActorLastName(@PathVariable("id") Short id,@RequestBody Actor actor) {
-		return actorService.updateActorLastName(id,actor);
+	public Actor updateActorLastName(@PathVariable("id") Short id,@RequestBody String ln) {
+		return actorService.updateActorLastName(id,ln);
 	}
 	
 	@PutMapping("/update/firstname/{id}")
-	public Actor updateActorFirstName(@PathVariable("id") Short id,@RequestBody Actor actor) {
-		return actorService.updateActorFirstName(id, actor);
+	public Actor updateActorFirstName(@PathVariable("id") Short id,@RequestBody String fn) {
+		return actorService.updateActorFirstName(id, fn);
 	}
 	
 	@GetMapping("/{id}/films")

@@ -30,5 +30,14 @@ public interface PaymentRepository extends JpaRepository<Payment,Integer> {
 	            "ORDER BY p.paymentDate",
 	            nativeQuery = true)
     List<Object[]> calculateCumulativeRevenueByDateAndStore(@Param("storeId") Byte storeId);
+    
+    @Query("SELECT p.rental.inventory.film.title AS filmTitle, SUM(p.amount) AS amount FROM Payment p GROUP BY p.rental.inventory.film.title")
+	List<Map<String,Object>> getRevenueByFilm();
+    
+    @Query("SELECT p.rental.inventory.store.address.address, SUM(p.amount) " +
+            "FROM Payment p " +
+            "WHERE p.rental.inventory.film.filmId = :filmId " +
+            "GROUP BY p.rental.inventory.store.address.address")
+    List<Object[]> calculateRevenueByFilmStoreWise(@Param("filmId") int filmId);
 
 }
