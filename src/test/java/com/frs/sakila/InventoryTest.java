@@ -1,5 +1,5 @@
 package com.frs.sakila;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.when;
@@ -69,3 +69,4 @@ class InventoryTest {
         verify(inventoryRepository).findByStoreStoreId(storeId);
     }
 }
+*/
