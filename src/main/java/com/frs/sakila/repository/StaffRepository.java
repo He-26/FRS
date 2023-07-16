@@ -16,8 +16,6 @@ import com.frs.sakila.entity.Staff;
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,Byte> {
 
-	@PersistenceContext
-	public EntityManager entityManager = null;
 	List<Staff> findByLastName(String lastName);
 	List<Staff> findByFirstName(String firstName);
 	Staff findByEmail(String email);
